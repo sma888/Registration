@@ -12,6 +12,7 @@ namespace RegistrWpfApp
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

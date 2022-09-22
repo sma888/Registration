@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace RegistrWpfApp
 {
@@ -23,11 +24,23 @@ namespace RegistrWpfApp
 
         public bool Check(string login, string password, string passwordBoxText)
         {
-            foreach (var user in GetUsersList())
+            if (login != "" && (password != "" || passwordBoxText != ""))
             {
-                if (user.Login == login && user.Password == password) return true;
-                else return false;
+                foreach (var user in GetUsersList())
+                {
+                    if (user.Login == login && (user.Password == password || user.Password == passwordBoxText))
+                    {
+                        MessageBox.Show("Вход выполнен успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неверный логин или пароль", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Stop);
+                        return false;
+                    }
+                }
             }
+            else MessageBox.Show("Не все поля заполнены!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Stop);
             return false;
         }
     }
