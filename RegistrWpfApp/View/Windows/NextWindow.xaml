@@ -1,0 +1,54 @@
+﻿<Window x:Class="RegistrWpfApp.NextWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RegistrWpfApp"
+        mc:Ignorable="d"
+        Title="Главное окно" Height="500" MinHeight="450" Width="750" MinWidth="730" Background="#009999" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="0" Name="cap">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Главное окно"
+                       Margin="8,15,0,0"
+                       FontSize="30"
+                       VerticalAlignment="Center"/>
+            <TextBlock Text="ФИО:"
+                       HorizontalAlignment="Right"
+                       Grid.Column="2"
+                       VerticalAlignment="Center"
+                       Margin="0,0,8,0"/>
+
+            <Button Content="Расписание"
+                    Grid.Row="1"
+                    Margin="8,22,0,22"/>
+
+            <Button Content="Учитель"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="8,22,0,22"/>
+        </Grid>
+
+        <Grid x:Name="bottom"
+              Grid.Row="1">
+            <Frame Margin="10" Background="#006363" x:Name="frameForSchedule"/>
+        </Grid>
+        
+    </Grid>
+</Window>
