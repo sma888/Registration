@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace RegistrWpfApp.ViewModel
@@ -45,14 +46,19 @@ namespace RegistrWpfApp.ViewModel
             NextButton = new DelegateCommand(Check);
         }
 
-        public void Check(object obj)
+        public async void Check(object obj)
         {
-            bool result = verificate.Check(Login, Password);
-
+            bool result = await verificate.Check(Login, Password);
             if (result == true)
             {
                 NextWindow next = new NextWindow();
                 next.Show();
+
+                foreach (Window w in App.Current.Windows)
+                {
+                    if (w.Title == "Регистрация")
+                        w.Close();
+                }
             }
         }
     }

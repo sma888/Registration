@@ -26,12 +26,17 @@ namespace RegistrWpfApp
         public SchedulePage()
         {
             InitializeComponent();
+            SchedulePageAsync();
+        }
+
+        public async void SchedulePageAsync()
+        {
             FileReader fileReader = new FileReader();
-            fileReader.Teacher();
-            TeacherBox.ItemsSource = fileReader.Teacher();
+            await fileReader.Teacher();
+            TeacherBox.ItemsSource = await fileReader.Teacher();
             TeacherBox.DisplayMemberPath = "TeacherName";
-            fileReader.Lesson();
-            LessonBox.ItemsSource = fileReader.Lesson();
+            await fileReader.Lesson();
+            LessonBox.ItemsSource = await fileReader.Lesson();
             LessonBox.DisplayMemberPath = "Name";
             times = new ObservableCollection<Time>();
         }

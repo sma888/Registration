@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace RegistrWpfApp
@@ -22,7 +23,7 @@ namespace RegistrWpfApp
         }
 
 
-        public bool Check(string login, string password)
+        public async Task<bool> Check(string login, string password)
         {
             if (login != "" && password != "")
             {
@@ -31,6 +32,7 @@ namespace RegistrWpfApp
                     if (user.Login == login && user.Password == password)
                     {
                         MessageBox.Show("Вход выполнен успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                        await Task.FromResult(true);
                         return true;
                     }
                     else

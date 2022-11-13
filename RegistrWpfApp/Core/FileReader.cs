@@ -1,17 +1,19 @@
 ﻿using RegistrWpfApp.Model;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace RegistrWpfApp.Core
 {
     public class FileReader
     {
-        public ObservableCollection<Teacher> Teacher()
+        public async Task<ObservableCollection<Teacher>> Teacher()
         {
             var teacherList = new ObservableCollection<Teacher>();
             using (StreamReader teacherReader = new StreamReader(@"..\..\File\Teachers.txt"))
             {
-                foreach (var item in teacherReader.ReadToEnd().Split('\n'))
+                var teacherSplit = await teacherReader.ReadToEndAsync();
+                foreach (var item in teacherSplit.Split('\n'))
                 {
                     var arrayString = item.Split(',');
                     if (arrayString[0] != "ID")
@@ -30,12 +32,13 @@ namespace RegistrWpfApp.Core
                 return teacherList;
             }
         }
-        public ObservableCollection<Lesson> Lesson()
+        public async Task<ObservableCollection<Lesson>> Lesson()
         {
             var lessonList = new ObservableCollection<Lesson>();
-            using (StreamReader subjectReader = new StreamReader(@"..\..\File\Lesson.txt"))
+            using (StreamReader lessonReader = new StreamReader(@"..\..\File\Lesson.txt"))
             {
-                foreach (var item in subjectReader.ReadToEnd().Split('\n'))
+                var lessonSplit = await lessonReader.ReadToEndAsync();
+                foreach (var item in lessonSplit.Split('\n'))
                 {
                     var arrayString = item.Split('?');
                     if (arrayString[0] != "ID")
